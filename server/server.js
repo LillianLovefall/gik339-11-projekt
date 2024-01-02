@@ -14,10 +14,10 @@ server
     next();
 });
 
-server.get("/resurs/", (req, res) => {
+server.get("/books/", (req, res) => {
     const url = req.url;
     const db = new sqlite3.Database("./books.db");
-    const sql = "SELECT * FROM resurs";
+    const sql = "SELECT * FROM books";
     db.all(sql, (err, rows) => {
       if (err) {
         res.status(500).send(err);
@@ -29,12 +29,12 @@ server.get("/resurs/", (req, res) => {
 });
 
   
-server.put('/resurs/', (req, res) => {
+server.put('/books/', (req, res) => {
     const params = req.params;
     res.send(params);
 });
 
-server.post('/resurs/', (req, res) => {
+server.post('/books/', (req, res) => {
     const body = req.body;
   
     //Spara innehåll i body till databasen
