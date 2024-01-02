@@ -1,61 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projektarbete - Grupp 11</title>
-</head>
-<body>
-    <header>
-        <h1>Bokhandeln</h1>
-    </header>
-    <main>
-        <div class="">
-            <div>
-                <h2>Titel:</h2>
-                <input></input>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Projektarbete - Grupp 11</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script defer src="script.js"></script>
+        <script defer src="server.js"></script>
+        
+    </head>
+    <body>
+         <!-- <header>
+            <h1>Bokhandeln</h1>
+        </header>
+        <main>
+            <div class="flex">
+                <div class="input-group">
+                    <div class="form-outline" data-mdb-input-init>
+                    <input type="search" id="form1" class="form-control" />
+                    <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                    <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="flex-rows">
+                    <h2 class="flex-rows">Titel:</h2>
+                    <input class="flex-rows"></input>
+                </div>
+                <div>
+                    <h2>ISBN:</h2>
+                    <input></input>
+                </div>
+                <div>
+                    <h2>Författare:</h2>
+                    <input></input>
+                </div>
+                <div>
+                    <h2>Pris:</h2>
+                    <input></input>
+                </div>
+                <div>
+                    <h2>Genre:</h2>
+                    <input></input>
+                </div>
+                <div>
+                    <button class="button btnClear">
+                        Rensa
+                    </button>
+                    <button class="button btnSend">
+                        Skicka
+                    </button>
+                </div>
+                <!--dropdown
+                <div>
+                    <a
+                    class="dropdown-toggle hidden-arrow btn btn-primary"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-mdb-dropdown-init
+                    data-mdb-ripple-init
+                    aria-expanded="false"
+                    >
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                    <li>
+                        <div class="input-group mt-2 mx-2">
+                        <div class="form-outline w-auto" data-mdb-input-init>
+                            <input type="search" id="form1" class="form-control-dropdown" />
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                        </div>
+                    </li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
             </div>
-            <div>
-                <h2>ISBN:</h2>
-                <input></input>
+            
+            <div class="card-base ${bookGenre}">
+                <p>Id: ${id}</p>
+                <p>Titel: ${bookTitle}</p>
+                <p>ISBN: ${bookIsbn}</p>
+                <p>Författare: ${bookAuthor}</p>
+                <p>Pris: ${bookPrice}</p>
+                <p>Genre: ${bookGenre}</p>
+                <div>
+                    <button class="button btnUpdate">Ändra</button>                
+                    <button class="button btnDelete">Ta bort</button>                
+                </div>
             </div>
-            <div>
-                <h2>Författare:</h2>
-                <input></input>
-            </div>
-            <div>
-                <h2>Pris:</h2>
-                <input></input>
-            </div>
-            <div>
-                <h2>Genre:</h2>
-                <input></input>
-            </div>
-            <div>
-                <button class="button">
-                    Ta bort
+            -->
+        </main> 
+        <div class="jumbotron text-center">
+            <h1>Bokhandeln</h1>
+            <p>Din favoritbokhandel på nätet!</p> 
+          </div>
+            
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <h3>Titel</h3>
+                <input class="flex-rows"></input>
+              </div>
+              <div class="col-sm-4">
+                <h3>ISBN</h3>
+                <input class="flex-rows"></input>
+              </div>
+              <div class="col-sm-4">
+                <h3>Författare</h3>        
+                <input class="flex-rows"></input>
+              </div>
+              <div class="col-sm-4">
+                <h3>Pris</h3>        
+                <input class="flex-rows"></input>
+              </div>
+              <div class="col-sm-4">
+                <h3>Genre</h3>        
+                <input class="flex-rows"></input>
+              </div>
+              <div class="col-sm-4">
+                <label class="form-label" for="form1">Search</label>
+                <div class="form-outline" data-input-init>
+                <input type="search" id="form1" class="form-control" /> 
+                </div>
+              <div class="col-sm-4">
+                <button class="button btnClear">
+                    Rensa
                 </button>
-                <button class="button">
+                <button class="button btnSend">
                     Skicka
                 </button>
             </div>
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-primary">1</button>
-                <button type="button" class="btn btn-primary">2</button>
-              
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                    <li><a class="dropdown-item" href="#">Dropdown link</a></li>
-                  </ul>
-                </div>
-              </div>
-        </div>
-    </main>
+          </div>
+    </body>
+    <footer>
+    </footer>
 
-    
-</body>
 </html>
