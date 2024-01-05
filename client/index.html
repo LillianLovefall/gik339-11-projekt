@@ -7,46 +7,68 @@
         <title>Projektarbete - Grupp 11</title>
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-        <main>
-            <div class="jumbotron text-center">
-                <h1>Bokhandeln</h1>
-                <p>Din favoritbokhandel på nätet!</p> 
+    <header>
+        <nav class="bg-white shadow">
+            <div class="container mx-auto px-6 py-3 ">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="flex justify-between items-center">
+                        <div class="text-xl font-semibold text-gray-700">
+                            <a href="#" class="text-gray-800 text-xl font-bold hover:text-gray-700 md:text-2xl">The Bookstore</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form class="container" id="bookForm">
-                <div class="row">
-                <div class="col-sm-4">
-                    <h3>Titel</h3>
-                    <input class="flex-rows"></input>
+        </nav>
+    
+        <div class="w-full bg-cover bg-center" style="height:12rem; background-image: url(https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+            <div class="flex items-center justify-center h-full w-full bg-gray-900 bg-opacity-60">
+                <div class="text-center">
+                    <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">The Bookstore</h1>
+                    <h6 class="text-white text-1xl  md:text-1xl">The best bookstore in the world!</h6>
                 </div>
-                <div class="col-sm-4">
-                    <h3>ISBN</h3>
-                    <input class="flex-rows"></input>
-                </div>
-                <div class="col-sm-4">
-                    <h3>Författare</h3>        
-                    <input class="flex-rows"></input>
-                </div>
-                <div class="col-sm-4">
-                    <h3>Pris</h3>        
-                    <input class="flex-rows"></input>
-                </div>
-                <div>
-                    <h3 for="bookGenre">Genre</h3>
-                    <select name="bookGenre">
-                    <option value="${book.bookGenre}">Crime/Thriller</option>
-                    <option value="${book.bookGenre}">Adventure</option>
-                    <option value="${book.bookGenre}">Childrens</option>
-                    <option value="${book.bookGenre}">Romance</option>
-                    <option value="${book.bookGenre}">Sci-fi/Fantasy</option>
-                    </select>
-                </div>
-                <div class="col-sm-4">
+            </div>
+        </div>
+    <body>
+        
+        <main>
+            <form id="bookForm">
+                <div class="grid mb-2 md:grid-cols-2">
+                    <div class="relative inline-block text-left px-40">
+                        <label for="bookTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Title</label>
+                        <input type="text" id="bookTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Dead Until Dark'" required>
+                    </div>
+                    <div class="relative inline-block text-left px-40">
+                        <label for="bookIsbn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">ISBN</label>
+                        <input type="text" id="bookIsbn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '9780575089365'" required>
+                    </div>
+                    <div class="relative inline-block text-left px-40">
+                        <label for="bookAuthor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Författare</label>
+                        <input type="text" id="bookAuthor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Charlaine Harris'" required>
+                    </div>  
+                    <div class="relative inline-block text-left px-40">
+                        <label for="bookPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Pris</label>
+                        <input type="number" id="bookPrice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '108'" required>
+                    </div>    
+                      <!-- dropdown meny -->
+                    <div class="relative inline-block text-left px-40" id="dropdownButton">
+                        <label for="bookGenre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Genre</label>
+                        <select id="bookGenre" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" id="menu-button" aria-expanded="true" aria-haspopup="true" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="1">
+                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                            
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1"></options>
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1">Crime/Thriller</option>
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-2">Childrens</option>
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-3">Romance</option>
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-4">Sci-fi/Fantasy</option>
+                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-5">Adventure</option>
+                        </select>
+                    </div>
+                <div class="">
                     <label class="form-label" for="form1">Search</label>
                     <div class="form-outline" data-input-init>
                         <input type="search" id="form1" class="form-control" /> 
                     </div>
-                    <div class="col-sm-4">
+                    <div class="">
                         <button class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300" type="reset" name="clearBookForm">
                             Rensa
                         </button>
@@ -56,7 +78,7 @@
                     </div>
                 </div>
             </form>
-            <div id="bookList"></div>
+            <div class="flex" id="bookList"></div>
         </main>
         <script src="script.js"></script>        
     </body>

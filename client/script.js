@@ -6,51 +6,74 @@ function fetchData() {
     fetch(url)
       .then((result) => result.json())
       .then((books) => {
+        const bookListElement = document.getElementById('bookList');
         if (books.length > 0) {
-          let html = `<ul id="bookList" class="flex-auto bg-${book.bookGenre}-100 border-${book.bookGenre}-300 border-2 p-6">`;
+          let html = `<ul class="grid grid-cols-3 justify-center">`;
           books.forEach((book) => {
+            let genreColor = '';
+            switch(book.bookGenre){
+              case 'Crime/Thriller':
+                genreColor = 'gray';
+                break;
+              case 'Adventure':
+                genreColor = 'green';
+                break;
+              case 'Sci-fi/Fantasy':
+                genreColor = 'purple';
+                break;
+              case 'Childrens':
+                genreColor = 'blue';
+                break;
+              case 'Romance':
+                genreColor = 'red';
+                break;
+              default:
+                genreColor = 'black';
+                break;
+            }
+
             html += `
-            <li id="${book.id}">
+            <li id="${book.id}" class="flex bg-${genreColor}-100 border-${genreColor}-300 border-2 p-6">
                 <div class="flex flex-wrap items-baseline">
-                  <h1 class="w-full flex-none mb-3 text-2xl leading-none text-${book.bookGenre}-900">
+                  <h1 class="w-full flex-none text-2xl leading-none text-${genreColor}-900">
                       ${book.bookTitle}
                   </h1>
-                  <div class="flex-auto text-lg font-medium text-${book.bookGenre}-600">
-                      ${book.bookPrice}
+                  <div class="flex-auto text-lg font-medium text-${genreColor}-600">
+                      ${book.bookPrice} kr
                   </div>
-                  <div class="text-xs leading-6 font-medium uppercase text-${book.bookGenre}-600">
+                  <div class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">
                       ISBN: ${book.bookIsbn}
                   </div>
                 </div>
-                <div class="flex grid grid-cols-1 items-baseline mt-4 mb-6 pb-6 border-b border-${book.bookGenre}-400">
+                <div class="flex grid grid-cols-1 items-baseline mt-4 mb-6 pb-6 border-b border-${genreColor}-400">
                   <div class="space-x-1 flex text-sm font-medium">
-                    <p class="text-xs leading-6 font-medium uppercase text-${book.bookGenre}-600">Författare: ${book.bookAuthor}</p>
+                    <p class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">Författare: ${book.bookAuthor}</p>
                   </div>
                   <div class="space-x-1 flex text-sm font-medium">
-                    <p class="text-xs leading-6 font-medium uppercase text-${book.bookGenre}-600">Genre: ${book.bookGenre}</p>
+                    <p class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">Genre: ${book.bookGenre}</p>
                   </div>
                 </div>
                 <div class="flex space-x-4 mb-5 text-sm font-medium">
                   <div class="flex-auto flex space-x-4 pr-4">
-                    <button onclick="setCurrentbook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${book.bookGenre}-900 text-white" type="submit">
+                    <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="submit">
                       Ändra
                     </button>
-                    <button  onclick="deletebook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${book.bookGenre}-200 text-${book.bookGenre}-900" type="button">
+                    <button  onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button">
                       Ta Bort
                     </button>
                   </div>
                 </div>
-            </li>
-
-            
-            `;
-        });
+            </li>`;
+          });
         html += `</ul>`;
 
-        const bookList = document.getElementById('bookList');
-        bookList.innerHTML = '';
-        bookList.insertAdjacentHTML('beforeend', html);
+        bookListElement.innerHTML = html;
+      } else {
+        bookListElement.innerHTML = 'No books available';
       }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
     });
 }
 

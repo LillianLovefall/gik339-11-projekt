@@ -45,7 +45,7 @@ server.get('/books/:id', (req, res) => {
 
 server.post('/books', (req, res) => {
   const book = req.body;
-  const sql = `INSERT INTO books(bookTitle, bokIsbn, bookAuthor, bookPrice, bookGenre) VALUES (?,?,?,?,?)`;
+  const sql = `INSERT INTO books(bookTitle, bookIsbn, bookAuthor, bookPrice, bookGenre) VALUES (?,?,?,?,?)`;
 
   db.run(sql, Object.values(book), (err) => {
     if (err) {
