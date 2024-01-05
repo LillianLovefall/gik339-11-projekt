@@ -13,27 +13,27 @@ function fetchData() {
             let genreColor = '';
             switch(book.bookGenre){
               case 'Crime/Thriller':
-                genreColor = 'gray';
-                break;
-              case 'Adventure':
-                genreColor = 'green';
-                break;
-              case 'Sci-fi/Fantasy':
-                genreColor = 'purple';
-                break;
-              case 'Childrens':
-                genreColor = 'blue';
-                break;
-              case 'Romance':
                 genreColor = 'red';
                 break;
+              case 'Adventure':
+                genreColor = 'lime';
+                break;
+              case 'Sci-fi/Fantasy':
+                genreColor = 'indigo';
+                break;
+              case 'Childrens':
+                genreColor = 'teal';
+                break;
+              case 'Romance':
+                genreColor = 'orange';
+                break;
               default:
-                genreColor = 'black';
+                genreColor = 'gray';
                 break;
             }
 
             html += `
-            <li id="${book.id}" class="flex bg-${genreColor}-100 border-${genreColor}-300 border-2 p-6">
+            <li id="${book.id}" class="flex bg-${genreColor}-100 border-${genreColor}-300 flex-col h-[300px] border-2 p-6">
                 <div class="flex flex-wrap items-baseline">
                   <h1 class="w-full flex-none text-2xl leading-none text-${genreColor}-900">
                       ${book.bookTitle}
@@ -76,6 +76,43 @@ function fetchData() {
       console.error('Error fetching data:', error);
     });
 }
+
+const selectElement = document.getElementById('bookGenre');
+
+selectElement.addEventListener('change', function(event) {
+    if (event.target.value === 'Ex. Romance') {
+        formElement.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Romance genre is not allowed.');
+          // You can display an error message or handle the condition as needed
+    });
+} else {
+    formElement.removeEventListener('submit', function(e) {
+        e.preventDefault();
+    });
+    }
+});
+
+
+/*
+const selectElement = document.getElementById('selectGenre');
+const formElement = document.getElementById('yourFormId');
+
+selectElement.addEventListener('change', function(event) {
+    if (selectElement.value === 'Romance') {
+        formElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Romance genre is not allowed.');
+            // You can display an error message or handle the condition as needed
+        });
+    } else {
+        formElement.removeEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+    }
+});
+*/
+
 
 function setCurrentBook(id) {
     console.log('current', id);
@@ -134,7 +171,5 @@ function handleSubmit(e) {
   
       localStorage.removeItem('currentId');
       bookForm.reset();
-
-      res.send(response);
     });
 }
