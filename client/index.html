@@ -60,7 +60,7 @@
                           Rensa
                         </button>
                         <button
-                            id="open"
+                            id="openModal"
                           class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
                           type="submit"
                           name="submitBookForm">
@@ -70,6 +70,7 @@
                 </div>
             </form>
             <div class="p-20" id="bookList"></div>
+<<<<<<< Updated upstream
 
  <!-- --------------- -->
  <div class="bg-gray-200 flex justify-center items-center h-screen select-none"
@@ -132,6 +133,30 @@
     </div>
 </div>
  <!-- --------------- -->
+=======
+            <!--<div class="p-20" id="dialogueBox">
+                <div id="dialog"
+                class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
+                <h1 class="text-2xl font-semibold">Dialog Title</h1>
+                <div class="py-5 border-t border-b border-gray-300">
+                    <p>Welcome to KindaCode.com. Hope you will find something useful. Have a nice day and happy coding</p>
+                </div>
+                <div class="flex justify-end">
+                    This button is used to close the dialog
+                    <button id="close" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
+                        Close
+                    </button>
+                </div>
+                </div>
+            </div>-->
+<!------------------------NSG Modal------------------------->
+            <div id="feedbackModal" class="hidden fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                <div class="bg-white p-8 rounded shadow-md">
+                    <div id="feedbackContent" class="text-center"></div>
+                    <button id="closeModal" class="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none">Close</button>
+                </div>
+            </div>
+>>>>>>> Stashed changes
 
         </main>
         <script src="script.js"></script>        

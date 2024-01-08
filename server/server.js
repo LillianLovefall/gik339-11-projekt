@@ -43,6 +43,7 @@ server.get('/books/:id', (req, res) => {
   });
 });
 
+/*
 server.post('/books', (req, res) => {
   const book = req.body;
   const sql = `INSERT INTO books(bookTitle, bookIsbn, bookAuthor, bookPrice, bookGenre) VALUES (?,?,?,?,?)`;
@@ -52,11 +53,41 @@ server.post('/books', (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.send('Boken sparades');
+      const response = "Resource created successfully";
+      showModal(response);    }
+  });
+});
+*/
+
+//-------------------------------------------
+server.post('/books', (req, res) => {
+  const book = req.body;
+  const sql = `INSERT INTO books(bookTitle, bookIsbn, bookAuthor, bookPrice, bookGenre) VALUES (?,?,?,?,?)`;
+
+  db.run(sql, Object.values(book), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      // Fetch the newly inserted book from the database
+      const selectQuery = `SELECT * FROM books WHERE bookTitle = ?`;
+      db.get(selectQuery, book.bookTitle, (selectErr, insertedBook) => {
+        if (selectErr) {
+          res.status(500).send(selectErr);
+        } else {
+          const response = {
+            status: 'success',
+            message: 'Book added successfully.',
+            book: insertedBook // Pass the newly inserted book details
+          };
+          res.status(200).json(response);
+        }
+      });
     }
   });
 });
-  
+//-------------------------------------------
+
 server.put('/books', (req, res) => {
   const bodyData = req.body;
   const id = bodyData.id;
@@ -81,8 +112,8 @@ server.put('/books', (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.send('Boken uppdaterades');
-    }
+      const response = "Resource updated successfully";
+      showModal(response);    }
   });
 });
 
@@ -95,7 +126,22 @@ server.delete('/books/:id', (req, res) => {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.send('Boken borttagen');
+      const response = "Resource removed successfully";
+      showModal(response);    }
+  });
+});
+
+server.delete('/books/:id', (req, res) => {
+  const id = req.params.id;
+  const sql = `DELETE FROM books WHERE id = ${id}`;
+
+  db.run(sql, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send({ error: 'An error occurred while deleting the resource.' });
+    } else {
+      const response = { message: 'Resource removed successfully' };
+      res.status(200).json(response);
     }
   });
 });
