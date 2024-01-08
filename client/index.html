@@ -41,8 +41,10 @@
                       <!-- dropdown meny -->
                     <div class="relative inline-block text-left px-10" id="dropdownButton">
                         <label for="bookGenre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Genre</label>
+
                         <select type="dropdown" id="bookGenre" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" id="menu-button" aria-expanded="true" aria-haspopup="true" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="1">
                             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->                            
+
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1">Crime/Thriller</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-2">Childrens</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-3">Romance</option>
@@ -58,16 +60,17 @@
                           Rensa
                         </button>
                         <button
+                            id="open"
                           class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
                           type="submit"
                           name="submitBookForm">
                           Skicka
                         </button>
-                      </div>
+                    </div>
                 </div>
             </form>
             <div class="p-20" id="bookList"></div>
-            
+
  <!-- --------------- -->
  <div class="bg-gray-200 flex justify-center items-center h-screen select-none"
   >
