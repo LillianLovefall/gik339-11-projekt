@@ -77,43 +77,6 @@ function fetchData() {
     });
 }
 
-const selectElement = document.getElementById('bookGenre');
-
-selectElement.addEventListener('change', function(event) {
-    if (event.target.value === 'Ex. Romance') {
-        formElement.addEventListener('submit', function(e) {
-          e.preventDefault();
-          alert('Romance genre is not allowed.');
-          // You can display an error message or handle the condition as needed
-    });
-} else {
-    formElement.removeEventListener('submit', function(e) {
-        e.preventDefault();
-    });
-    }
-});
-
-
-/*
-const selectElement = document.getElementById('selectGenre');
-const formElement = document.getElementById('yourFormId');
-
-selectElement.addEventListener('change', function(event) {
-    if (selectElement.value === 'Romance') {
-        formElement.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Romance genre is not allowed.');
-            // You can display an error message or handle the condition as needed
-        });
-    } else {
-        formElement.removeEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-    }
-});
-*/
-
-
 function setCurrentBook(id) {
     console.log('current', id);
   
@@ -190,4 +153,43 @@ function hideDialog() {
     dialog.classList.add("hidden");
     dialog.classList.remove("flex");
   }, 500);
+}
+
+//------------------------------------------------
+
+
+// Function to show the modal with the provided message
+function showModal(message) {
+  const modal = document.getElementById('feedbackModal');
+  const modalContent = document.getElementById('feedbackContent');
+  
+  modalContent.innerText = message;
+  modal.classList.remove('hidden');
+}
+
+// Event listener to hide the modal when 'Close' button is clicked
+const closeModalButton = document.getElementById('closeModal');
+closeModalButton.addEventListener('click', hideModal);
+
+// JavaScript to handle delete action and show modal response
+document.getElementById('deleteButton').addEventListener('click', function() {
+  // Display modal to confirm deletion
+  showModal('Are you sure you want to delete this book?');
+
+  // Perform delete action after user confirmation
+  const confirmed = confirm('Are you sure you want to delete this book?');
+  if (confirmed) {
+    // Execute delete logic here
+    // On success, update modal message
+    showModal('Book deleted successfully');
+  } else {
+    // If not confirmed, hide modal or show cancellation message
+    showModal('Deletion cancelled');
+  }
+});
+
+// Function to hide the modal
+function hideModal() {
+  const modal = document.getElementById('feedbackModal');
+  modal.classList.add('hidden');
 }
