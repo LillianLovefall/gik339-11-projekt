@@ -58,7 +58,7 @@ function fetchData() {
                     <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="submit">
                       Ändra
                     </button>
-                    <button  onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button">
+                    <button  onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
                       Ta Bort
                     </button>
                   </div>
@@ -172,4 +172,22 @@ function handleSubmit(e) {
       localStorage.removeItem('currentId');
       bookForm.reset();
     });
+}
+
+function showDialog() {
+  let dialog = document.getElementById("dialog");
+  dialog.classList.remove("hidden");
+  dialog.classList.add("flex");
+  setTimeout(() => {
+    dialog.classList.add("opacity-100");
+  }, 20);
+}
+function hideDialog() {
+  let dialog = document.getElementById("dialog");
+  dialog.classList.add("opacity-0");
+  dialog.classList.remove("opacity-100");
+  setTimeout(() => {
+    dialog.classList.add("hidden");
+    dialog.classList.remove("flex");
+  }, 500);
 }

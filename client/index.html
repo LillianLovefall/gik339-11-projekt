@@ -28,7 +28,7 @@
                     </div>
                     <div class="relative inline-block text-left px-10">
                         <label for="bookIsbn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">ISBN</label>
-                        <input type="text" id="bookIsbn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '9780575089365'" required>
+                        <input type="number" id="bookIsbn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '9780575089365'" required>
                     </div>
                     <div class="relative inline-block text-left px-10">
                         <label for="bookAuthor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Författare</label>
@@ -41,10 +41,8 @@
                       <!-- dropdown meny -->
                     <div class="relative inline-block text-left px-10" id="dropdownButton">
                         <label for="bookGenre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Genre</label>
-                        <select id="bookGenre" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" id="menu-button" aria-expanded="true" aria-haspopup="true" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="1">
-                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                            
-                            <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1">Ex. Romance</options>
+                        <select type="dropdown" id="bookGenre" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" id="menu-button" aria-expanded="true" aria-haspopup="true" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="1">
+                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->                            
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1">Crime/Thriller</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-2">Childrens</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-3">Romance</option>
@@ -69,6 +67,69 @@
                 </div>
             </form>
             <div class="p-20" id="bookList"></div>
+            
+ <!-- --------------- -->
+ <div class="bg-gray-200 flex justify-center items-center h-screen select-none"
+  >
+    <button
+      onclick="showDialog()"
+      class="bg-white py-3 px-5 rounded text-gray-600 shadow-md"
+    >
+      Open Modal
+    </button>
+
+    <div
+      onclick="hideDialog()"
+      id="dialog"
+      class="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen justify-center items-center opacity-0 hidden transition-opacity duration-500"
+    >
+      <div
+        onclick="event.stopImmediatePropagation()"
+        class="bg-white rounded shadow-md w-[25%] flex gap-5 flex-col overflow-hidden"
+      >
+        <div class="flex p-8 gap-6 pb-0">
+          <div
+            class="bg-red-100 rounded-full text-red-600 min-w-[50px] h-[50px] flex items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+              />
+            </svg>
+          </div>
+
+          <div class="flex-grow">
+            <h1 class="font-bold text-lg mb-2 text-gray-700">
+              Deactive account
+            </h1>
+            <p class="text-gray-600">
+              Are you sure you want to deactivate your account? All of your data
+              will be permanently removed. This action cannot be undone.
+            </p>
+          </div>
+        </div>
+        <div class="bg-gray-100 py-3 px-6 justify-end flex gap-4">
+          <button
+            class="bg-white border-[1px] border-gray-300 rounded px-4 py-2 text-black cursor-pointer hover:bg-gray-100"
+            onclick="hideDialog()"
+          >
+          </button>
+          
+        </div>
+      </div>
+    </div>
+</div>
+ <!-- --------------- -->
+
         </main>
         <script src="script.js"></script>        
     </body>
