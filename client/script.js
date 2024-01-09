@@ -58,7 +58,7 @@ function fetchData() {
                     <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="button">
                       Edit
                     </button>
-                    <button onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
+                    <button id="removeButton" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
                       Remove
                     </button>
                   </div>
@@ -94,69 +94,108 @@ function setCurrentBook(id) {
       });
 }
 
-function deleteBook(id) {
-    console.log('delete', id);
+// function deleteBook(id) {
+//     console.log('delete', id);
+//     fetch(`${url}/${id}`, { method: 'DELETE' })
+//     .then((result) => {
+//       fetchData()
+//       showDialog();
+//       e.preventDefault();
+//       localStorage.removeItem("currentId");
+//     });
+// }
+
+
+bookList.addEventListener('click', handleDeletion);
+
+function handleDeletion(e) {
+  let text = `Removing this book? \nEither OK or Cancel.`;
+    if (confirm(text) == true) {
+      console.log('pressed ok');
+      e.preventDefault();
+    } else {
+      console.log('pressed cancel');
+      return false
+    }
+    const id = localStorage.getItem('currentId');
+
     fetch(`${url}/${id}`, { method: 'DELETE' })
     .then((result) => {
       fetchData()
-      showDialog();
-      e.preventDefault();
       localStorage.removeItem("currentId");
     });
+  
+ 
 }
+
 
 bookForm.addEventListener('submit', handleSubmit);
 
 function handleSubmit(e) {
-    e.preventDefault();
-    const serverBookObject = {
-      bookTitle: '',
-      bookIsbn: '',
-      bookAuthor: '',
-      bookPrice: '',
-      bookGenre: ''
-    };
-    serverBookObject.bookTitle = bookForm.bookTitle.value;
-    serverBookObject.bookIsbn = bookForm.bookIsbn.value;
-    serverBookObject.bookAuthor = bookForm.bookAuthor.value;
-    serverBookObject.bookPrice = bookForm.bookPrice.value;
-    serverBookObject.bookGenre = bookForm.bookGenre.value;
-  
-    const id = localStorage.getItem('currentId');
-    if (id) {
-      serverBookObject.id = id;
+  let text = "Confirm your choice. \nEither OK or Cancel.";
+    if (confirm(text) == true) {
+      console.log('pressed ok');
+      e.preventDefault();
+      type="submit"
+    } else {
+      console.log('pressed cancel');
+      return false
     }
   
-    const request = new Request(url, {
-      method: serverBookObject.id ? 'PUT' : 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(serverBookObject)
-    });
-  
-    fetch(request).then((response) => {
-      fetchData();
-  
-      localStorage.removeItem('currentId');
-      bookForm.reset(); 
-    });
+
+  const serverBookObject = {
+    bookTitle: '',
+    bookIsbn: '',
+    bookAuthor: '',
+    bookPrice: '',
+    bookGenre: ''
+  };
+  serverBookObject.bookTitle = bookForm.bookTitle.value;
+  serverBookObject.bookIsbn = bookForm.bookIsbn.value;
+  serverBookObject.bookAuthor = bookForm.bookAuthor.value;
+  serverBookObject.bookPrice = bookForm.bookPrice.value;
+  serverBookObject.bookGenre = bookForm.bookGenre.value;
+
+  const id = localStorage.getItem('currentId');
+  if (id) {
+    serverBookObject.id = id;
+  }
+
+  const request = new Request(url, {
+    method: serverBookObject.id ? 'PUT' : 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(serverBookObject)
+  });
+
+  fetch(request).then((response) => {
+    fetchData();
+
+    localStorage.removeItem('currentId');
+    bookForm.reset(); 
+  });
 }
 
-function showDialog() {
-  let dialog = document.getElementById("dialog");
-  dialog.classList.remove("hidden");
-  dialog.classList.add("flex");
-  setTimeout(() => {
-    dialog.classList.add("opacity-100");
-  }, 20);
-}
-function hideDialog() {
-  let dialog = document.getElementById("dialog");
-  dialog.classList.add("opacity-0");
-  dialog.classList.remove("opacity-100");
-  setTimeout(() => {
-    dialog.classList.add("hidden");
-    dialog.classList.remove("flex");
-  }, 500);
-}
+// function showDialog() {
+//   let dialog = document.getElementById("dialog");
+//   dialog.classList.remove("hidden");
+//   dialog.classList.add("flex");
+//   setTimeout(() => {
+//     dialog.classList.add("opacity-100");
+//   }, 20);
+// }
+// function hideDialog() {
+//   let dialog = document.getElementById("dialog");
+//   dialog.classList.add("opacity-0");
+//   dialog.classList.remove("opacity-100");
+//   setTimeout(() => {
+//     dialog.classList.add("hidden");
+//     dialog.classList.remove("flex");
+//   }, 500);
+// }
+
+// function cancelSubmission() {
+//   console.log("uueueueeueu")
+//   return false;
+// }
