@@ -20,22 +20,22 @@
     <body>
         <a class="flex items-center justify-center text-black-800 text-m font-semibold md:text-xl">Add your books here:</a>
         <main>
-            <form id="bookForm">
+           <form id="bookForm">
                 <div class="grid mb-2 md:grid-cols-2">
+                   <div class="relative inline-block text-left px-10">
+                     <label for="bookTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Title</label>
+                      <input type="text" id="bookTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Dead Until Dark'" required>
+                  </div>
+                   <div class="relative inline-block text-left px-10">
+                     <label for="bookIsbn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">ISBN</label>
+                     <input type="number" id="bookIsbn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '9780575089365'" required>
+                  </div>
+                  <div class="relative inline-block text-left px-10">
+                     <label for="bookAuthor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Author</label>
+                     <input type="text" id="bookAuthor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Charlaine Harris'" required>
+                  </div>  
                     <div class="relative inline-block text-left px-10">
-                        <label for="bookTitle" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Title</label>
-                        <input type="text" id="bookTitle" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Dead Until Dark'" required>
-                    </div>
-                    <div class="relative inline-block text-left px-10">
-                        <label for="bookIsbn" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">ISBN</label>
-                        <input type="number" id="bookIsbn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '9780575089365'" required>
-                    </div>
-                    <div class="relative inline-block text-left px-10">
-                        <label for="bookAuthor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Författare</label>
-                        <input type="text" id="bookAuthor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. 'Charlaine Harris'" required>
-                    </div>  
-                    <div class="relative inline-block text-left px-10">
-                        <label for="bookPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Pris</label>
+                        <label for="bookPrice" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Price</label>
                         <input type="number" id="bookPrice" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 light:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ex. '108'" required>
                     </div>    
                       <!-- dropdown meny -->
@@ -44,7 +44,7 @@
 
                         <select type="dropdown" id="bookGenre" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300" id="menu-button" aria-expanded="true" aria-haspopup="true" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="1">
                             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->                            
-
+                            <option value="" selected disabled hidden>Choose Genre</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-1">Crime/Thriller</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-2">Childrens</option>
                             <option class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-50" role="menuitem" tabindex="-1" id="menu-item-3">Romance</option>
@@ -57,86 +57,72 @@
                           class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
                           type="reset"
                           name="clearBookForm">
-                          Rensa
+                          Clear
                         </button>
                         <button
-                            id="openModal"
+                          onclick="showDialog()"
                           class="px-4 py-1 bg-slate-200 text-slate-800 rounded-md hover:bg-slate-300"
-                          type="submit"
-                          name="submitBookForm">
-                          Skicka
+                          type="button"
+                          >
+                          Send
                         </button>
                     </div>
                 </div>
+                <div
+                  onclick="hideDialog()"
+                  id="dialog"
+                  class="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen justify-center items-center opacity-0 hidden transition-opacity duration-500"
+                >
+                  <div
+                    onclick="event.stopImmediatePropagation()"
+                    class="bg-white rounded shadow-md w-[25%] flex gap-5 flex-col overflow-hidden"
+                  >
+                    <div class="flex p-8 gap-6 pb-0">
+                      <div
+                        class="bg-blue-500 rounded-full text-red-600 min-w-[50px] h-[50px] flex items-center justify-center"
+                      >
+                      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                        <path d="M16 14V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 0 0 0-2h-1v-2a2 2 0 0 0 2-2ZM4 2h2v12H4V2Zm8 16H3a1 1 0 0 1 0-2h9v2Z"/>
+                    </svg>
+                      </div>
+
+                      <div class="flex-grow">
+                        <h1 class="font-bold text-lg mb-2 text-gray-700">
+                          Delete
+                        </h1>
+                        <p class="text-gray-600">
+                          Are you sure you want to delete this book? 
+                        </p>
+                      </div>
+                    </div>
+                    <div class="bg-gray-100 py-3 px-6 justify-end flex gap-4">
+                      <button
+                        class="bg-white border-[1px] border-gray-300 rounded px-4 py-2 text-black cursor-pointer hover:bg-gray-100"
+                        onclick="hideDialog()"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        class="bg-blue-700 rounded px-4 py-2 text-white cursor-pointer hover:bg-red-600"
+                        onclick="hideDialog()"
+                        type="submit"
+                          name="submitBookForm"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
             </form>
-            <div class="p-20" id="bookList"></div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+            <div class="p-20" id="bookList"></div> <!--div=id-->
+
+
 
  <!-- --------------- -->
- <div class="bg-gray-200 flex justify-center items-center h-screen select-none"
-  >
-    <button
-      onclick="showDialog()"
-      class="bg-white py-3 px-5 rounded text-gray-600 shadow-md"
-    >
-      Open Modal
-    </button>
-
-    <div
-      onclick="hideDialog()"
-      id="dialog"
-      class="fixed left-0 top-0 bg-black bg-opacity-50 w-screen h-screen justify-center items-center opacity-0 hidden transition-opacity duration-500"
-    >
-      <div
-        onclick="event.stopImmediatePropagation()"
-        class="bg-white rounded shadow-md w-[25%] flex gap-5 flex-col overflow-hidden"
-      >
-        <div class="flex p-8 gap-6 pb-0">
-          <div
-            class="bg-red-100 rounded-full text-red-600 min-w-[50px] h-[50px] flex items-center justify-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-              />
-            </svg>
-          </div>
-
-          <div class="flex-grow">
-            <h1 class="font-bold text-lg mb-2 text-gray-700">
-              Deactive account
-            </h1>
-            <p class="text-gray-600">
-              Are you sure you want to deactivate your account? All of your data
-              will be permanently removed. This action cannot be undone.
-            </p>
-          </div>
-        </div>
-        <div class="bg-gray-100 py-3 px-6 justify-end flex gap-4">
-          <button
-            class="bg-white border-[1px] border-gray-300 rounded px-4 py-2 text-black cursor-pointer hover:bg-gray-100"
-            onclick="hideDialog()"
-          >
-          </button>
-          
-        </div>
-      </div>
-    </div>
-</div>
+ 
  <!-- --------------- -->
-=======
-=======
->>>>>>> Stashed changes
+
             <!--<div class="p-20" id="dialogueBox">
                 <div id="dialog"
                 class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
@@ -152,19 +138,11 @@
                 </div>
                 </div>
             </div>-->
-<!------------------------NSG Modal------------------------->
-            <div id="feedbackModal" class="hidden fixed inset-0 z-50 overflow-auto bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                <div class="bg-white p-8 rounded shadow-md">
-                    <div id="feedbackContent" class="text-center"></div>
-                    <button id="closeModal" class="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none">Close</button>
-                </div>
-            </div>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
+         
 
         </main>
-        <script src="script.js"></script>        
+        <script src="script.js"></script>   
+      
     </body>
 </html>

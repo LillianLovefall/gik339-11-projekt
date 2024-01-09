@@ -47,7 +47,7 @@ function fetchData() {
                 </div>
                 <div class="flex grid grid-cols-1 items-baseline mt-4 mb-6 pb-6 border-b border-${genreColor}-400">
                   <div class="space-x-1 flex text-sm font-medium">
-                    <p class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">Författare: ${book.bookAuthor}</p>
+                    <p class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">Authour: ${book.bookAuthor}</p>
                   </div>
                   <div class="space-x-1 flex text-sm font-medium">
                     <p class="text-xs leading-6 font-medium uppercase text-${genreColor}-600">Genre: ${book.bookGenre}</p>
@@ -55,11 +55,11 @@ function fetchData() {
                 </div>
                 <div class="flex space-x-4 mb-5 text-sm font-medium">
                   <div class="flex-auto flex space-x-4 pr-4">
-                    <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="submit">
-                      Ändra
+                    <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="button">
+                      Edit
                     </button>
-                    <button  onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
-                      Ta Bort
+                    <button onclick="deleteBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
+                      Remove
                     </button>
                   </div>
                 </div>
@@ -96,7 +96,13 @@ function setCurrentBook(id) {
 
 function deleteBook(id) {
     console.log('delete', id);
-    fetch(`${url}/${id}`, { method: 'DELETE' }).then((result) => fetchData());
+    fetch(`${url}/${id}`, { method: 'DELETE' })
+    .then((result) => {
+      fetchData()
+      showDialog();
+      e.preventDefault();
+      localStorage.removeItem("currentId");
+    });
 }
 
 bookForm.addEventListener('submit', handleSubmit);
@@ -133,7 +139,7 @@ function handleSubmit(e) {
       fetchData();
   
       localStorage.removeItem('currentId');
-      bookForm.reset();
+      bookForm.reset(); 
     });
 }
 
@@ -153,43 +159,4 @@ function hideDialog() {
     dialog.classList.add("hidden");
     dialog.classList.remove("flex");
   }, 500);
-}
-
-//------------------------------------------------
-
-
-// Function to show the modal with the provided message
-function showModal(message) {
-  const modal = document.getElementById('feedbackModal');
-  const modalContent = document.getElementById('feedbackContent');
-  
-  modalContent.innerText = message;
-  modal.classList.remove('hidden');
-}
-
-// Event listener to hide the modal when 'Close' button is clicked
-const closeModalButton = document.getElementById('closeModal');
-closeModalButton.addEventListener('click', hideModal);
-
-// JavaScript to handle delete action and show modal response
-document.getElementById('deleteButton').addEventListener('click', function() {
-  // Display modal to confirm deletion
-  showModal('Are you sure you want to delete this book?');
-
-  // Perform delete action after user confirmation
-  const confirmed = confirm('Are you sure you want to delete this book?');
-  if (confirmed) {
-    // Execute delete logic here
-    // On success, update modal message
-    showModal('Book deleted successfully');
-  } else {
-    // If not confirmed, hide modal or show cancellation message
-    showModal('Deletion cancelled');
-  }
-});
-
-// Function to hide the modal
-function hideModal() {
-  const modal = document.getElementById('feedbackModal');
-  modal.classList.add('hidden');
 }
