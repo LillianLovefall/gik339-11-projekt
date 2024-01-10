@@ -58,7 +58,7 @@ function fetchData() {
                     <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="button">
                       Edit
                     </button>
-                    <button id="removeButton" onclick="handleDeletion(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
+                    <button id="deleteButton" data-book-id="${book.id}" class="deleteButton flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button">
                       Remove
                     </button>
                   </div>
@@ -76,6 +76,24 @@ function fetchData() {
       console.error("Error fetching data:", error);
     });
 }
+
+bookList.addEventListener('click', function(event) {
+  if (event.target.classList.contains('deleteButton')) {
+    let text = `Removing this book? \nEither OK or Cancel.`;
+    if (confirm(text)) {
+      console.log('pressed ok');
+      const id = event.target.dataset.bookId;
+      fetch(`${url}/${id}`, { method: 'DELETE' })
+        .then((result) => {
+          fetchData();
+          localStorage.removeItem("currentId");
+        });
+    } else {
+      console.log('pressed cancel');
+      return false;
+    }
+  }
+});
 
 function clearForm() {
   document.getElementById("bookForm").reset();
@@ -97,20 +115,6 @@ function setCurrentBook(id) {
 
       localStorage.setItem("currentId", book.id);
     });
-}
-
-function handleDeletion(id) {
-  let text = `Removing this book? \nEither OK or Cancel.`;
-  if (confirm(text)) {
-    console.log("pressed ok");
-    fetch(`${url}/${id}`, { method: "DELETE" }).then((result) => {
-      fetchData();
-      localStorage.removeItem("currentId");
-    });
-  } else {
-    console.log("pressed cancel");
-    return false;
-  }
 }
 
 bookForm.addEventListener("submit", handleSubmit);
