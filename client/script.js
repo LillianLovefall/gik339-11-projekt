@@ -58,7 +58,7 @@ function fetchData() {
                     <button onclick="setCurrentBook(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider bg-${genreColor}-900 text-white" type="button">
                       Edit
                     </button>
-                    <button id="removeButton" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
+                    <button id="removeButton" onclick="handleDeletion(${book.id})" class="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-${genreColor}-200 text-${genreColor}-900" type="button" >
                       Remove
                     </button>
                   </div>
@@ -75,6 +75,11 @@ function fetchData() {
     .catch((error) => {
       console.error('Error fetching data:', error);
     });
+}
+
+function clearForm() {
+  document.getElementById('bookForm').reset();
+  localStorage.removeItem('currentId');
 }
 
 function setCurrentBook(id) {
@@ -94,38 +99,19 @@ function setCurrentBook(id) {
       });
 }
 
-// function deleteBook(id) {
-//     console.log('delete', id);
-//     fetch(`${url}/${id}`, { method: 'DELETE' })
-//     .then((result) => {
-//       fetchData()
-//       showDialog();
-//       e.preventDefault();
-//       localStorage.removeItem("currentId");
-//     });
-// }
-
-
-bookList.addEventListener('click', handleDeletion);
-
-function handleDeletion(e) {
+function handleDeletion(id) {
   let text = `Removing this book? \nEither OK or Cancel.`;
-    if (confirm(text) == true) {
-      console.log('pressed ok');
-      e.preventDefault();
-    } else {
-      console.log('pressed cancel');
-      return false
-    }
-    const id = localStorage.getItem('currentId');
-
+  if (confirm(text)) {
+    console.log('pressed ok');
     fetch(`${url}/${id}`, { method: 'DELETE' })
-    .then((result) => {
-      fetchData()
-      localStorage.removeItem("currentId");
-    });
-  
- 
+      .then((result) => {
+        fetchData();
+        localStorage.removeItem("currentId");
+      });
+  } else {
+    console.log('pressed cancel');
+    return false;
+  }
 }
 
 
@@ -136,9 +122,10 @@ function handleSubmit(e) {
     if (confirm(text) == true) {
       console.log('pressed ok');
       e.preventDefault();
-      type="submit"
+      
     } else {
       console.log('pressed cancel');
+      clearForm()
       return false
     }
   
@@ -176,26 +163,3 @@ function handleSubmit(e) {
     bookForm.reset(); 
   });
 }
-
-// function showDialog() {
-//   let dialog = document.getElementById("dialog");
-//   dialog.classList.remove("hidden");
-//   dialog.classList.add("flex");
-//   setTimeout(() => {
-//     dialog.classList.add("opacity-100");
-//   }, 20);
-// }
-// function hideDialog() {
-//   let dialog = document.getElementById("dialog");
-//   dialog.classList.add("opacity-0");
-//   dialog.classList.remove("opacity-100");
-//   setTimeout(() => {
-//     dialog.classList.add("hidden");
-//     dialog.classList.remove("flex");
-//   }, 500);
-// }
-
-// function cancelSubmission() {
-//   console.log("uueueueeueu")
-//   return false;
-// }
