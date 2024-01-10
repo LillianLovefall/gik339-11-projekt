@@ -58,36 +58,6 @@ server.post('/books', (req, res) => {
   });
 });
 
-
-//-------------------------------------------
-// server.post('/books', (req, res) => {
-//   const book = req.body;
-//   const sql = `INSERT INTO books(bookTitle, bookIsbn, bookAuthor, bookPrice, bookGenre) VALUES (?,?,?,?,?)`;
-
-//   db.run(sql, Object.values(book), (err) => {
-//     if (err) {
-//       console.log(err);
-//       res.status(500).send(err);
-//     } else {
-//       // Fetch the newly inserted book from the database
-//       const selectQuery = `SELECT * FROM books WHERE bookTitle = ?`;
-//       db.get(selectQuery, book.bookTitle, (selectErr, insertedBook) => {
-//         if (selectErr) {
-//           res.status(500).send(selectErr);
-//         } else {
-//           const response = {
-//             status: 'success',
-//             message: 'Book added successfully.',
-//             book: insertedBook // Pass the newly inserted book details
-//           };
-//           res.status(200).json(response);
-//         }
-//       });
-//     }
-//   });
-// });
-//-------------------------------------------
-
 server.put('/books', (req, res) => {
   const bodyData = req.body;
   const id = bodyData.id;
